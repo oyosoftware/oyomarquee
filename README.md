@@ -23,13 +23,16 @@
 <p>jQuery component for a marquee.</p>
 <h3>Features</h3>
 <ul>
-  <li>A slider that is browser independent.</li>
-  <li>Slider can be enabled/disabled.</li>
-  <li>Automatic value change, can also be set.</li>
-  <li>Minimum value, maximum value and step can be defined.</li>
-  <li>Cursor keys control can be assigned to another element.</li>
+  <li>A marquee for scrolling text.</li>
+  <li>The content can scroll to the left, right, top and bottom.</li>  
+  <li>Scrolling can be turned on/off.</li>
+  <li>Speed can be modified.</li>
+  <li>Duration can be infinity or specific number of times.</li>
+  <li>A delay in seconds can be given between jumps.</li>
+  <li>Wrapping can be turned on/off.</li>
+  <li>Given text can be repeated.</li>
   <li>Colors can be changed.</li>
-  <li>Size of all parts can be changed.</li>
+  <li>Size can be changed.</li>
 </ul>
 <h2>Contact</h2>
 <ul>
