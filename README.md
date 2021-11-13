@@ -24,7 +24,7 @@
 <h3>Features</h3>
 <ul>
   <li>A marquee for scrolling text.</li>
-  <li>The content can scroll to the left, right, top and bottom.</li>  
+  <li>The content can scroll to the left, right, top or bottom.</li>  
   <li>Scrolling can be turned on/off.</li>
   <li>Speed can be modified.</li>
   <li>Duration can be infinity or specific number of times.</li>
