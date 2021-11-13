@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Test Marquee</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+        <script src="oyomarquee.js"></script>
+        <style>
+            .wrapper {
+                display: inline-block;
+                background: black;
+                padding: 12.5px;
+            }
+            .oyomarquee {
+                border: 1px solid white;
+                margin: auto;
+                padding: 16px;
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function () {
+                var marquee1 = new oyoMarquee(700, 50, 25);
+                $(".wrapper").append(marquee1);
+                $(marquee1).css("border", "5px solid white");
+                marquee1.speed = 2.;
+                marquee1.scroll = true;
+                marquee1.setText("Love is the center of the universe, truth is its circumference");
+                marquee1.changeBackgroundColor("black");
+                marquee1.changeTextColor("red");
+                //marquee1.resetColors();
+
+                $(".wrapper").append("<br/>");
+
+                var marquee2 = new oyoMarquee(400, 50, 0, "right");
+                $(".wrapper").append(marquee2);
+                marquee2.setText("الحب هو مركز الكون ، والحقيقة هي محيطه");
+                marquee2.changeBackgroundColor("green");
+                marquee2.changeTextColor("gold");
+
+                $(".wrapper").append("<br/>");
+
+                var marquee3 = new oyoMarquee(300, 107, 0, "up");
+                $(marquee3).css("padding", "4px");
+                $(".wrapper").append(marquee3);
+                marquee3.setText("Love is the center of the universe, truth is its circumference<br/>", 10);
+                marquee3.changeBackgroundColor("black");
+                marquee3.changeTextColor("gold");
+                marquee3.loop = 1;
+                marquee3.delay = 4;
+                marquee3.speed = 1;
+                marquee3.wrap = true;
+
+                setTimeout(function () {
+                    marquee3.direction = "left";
+                    marquee3.wrap = false;
+                    setTimeout(function () {
+                        marquee3.direction = "right";
+                        marquee3.wrap = false;
+                        setTimeout(function () {
+                            marquee3.direction = "down";
+                            marquee3.wrap = true;
+                        }, 13311);
+                    }, 13311);
+                }, 14390);
+
+            });
+        </script>
+        <div class="wrapper"></div>
+    </body>
+</html>
