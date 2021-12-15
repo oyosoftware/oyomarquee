@@ -58,7 +58,6 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
     $(marquee).height(height);
     $(marquee).css("border-radius", borderRadius);
     $(marquee).css("overflow", "hidden");
-    $(marquee).css("text-align", "center");
     $(marquee).css("background-color", defaultBackgroundColor);
     $(marquee).css("color", defaultTextColor);
 
@@ -123,10 +122,13 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
         if (scroll) {
             $(marqueeBanner).css("animation-play-state", "running");
             $(marqueeBanner).css("position", "relative");
+            $(marquee).css("text-align", "initial");
         } else {
             $(marqueeBanner).css("animation-play-state", "paused");
             $(marqueeBanner).css("position", "static");
+            $(marquee).css("text-align", "center");
         }
+
     }
 
     function delayAnimation() {
