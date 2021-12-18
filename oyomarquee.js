@@ -17,6 +17,7 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
     var loop = "infinite";
     var delay = 0;
     var wrap = false;
+    var align = true;
     var repeat = 1;
     var defaultBackgroundColor = "#527FC3";
     var defaultTextColor = "white";
@@ -60,6 +61,9 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
     $(marquee).css("overflow", "hidden");
     $(marquee).css("background-color", defaultBackgroundColor);
     $(marquee).css("color", defaultTextColor);
+    if (align === true) {
+        $(marquee).css("text-align", "center");
+    }
 
     var marqueeBanner = document.createElement("div");
     $(marqueeBanner).attr("class", "oyomarqueebanner");
@@ -122,13 +126,10 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
         if (scroll) {
             $(marqueeBanner).css("animation-play-state", "running");
             $(marqueeBanner).css("position", "relative");
-            $(marquee).css("text-align", "initial");
         } else {
             $(marqueeBanner).css("animation-play-state", "paused");
             $(marqueeBanner).css("position", "static");
-            $(marquee).css("text-align", "center");
         }
-
     }
 
     function delayAnimation() {
@@ -146,7 +147,6 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
         },
         set: function (value) {
             direction = value;
-            //setKeyFrames();
             marquee.setText();
         }
     });
@@ -167,6 +167,7 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
         },
         set: function (value) {
             speed = value;
+            marquee.setText();
         }
     });
 
@@ -204,6 +205,16 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
         }
     });
 
+    Object.defineProperty(marquee, "align", {
+        get: function () {
+            return align;
+        },
+        set: function (value) {
+            align = value;
+            marquee.setText();
+        }
+    });
+
     marquee.setText = function (text, textRepeat) {
         $(marqueeBanner).css("animation-name", "");
         $(marqueeBanner).css("line-height", "normal");
@@ -230,6 +241,12 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
             $(marqueeBanner).css("white-space", "nowrap");
         } else {
             $(marqueeBanner).css("white-space", "normal");
+        }
+
+        if (align === true) {
+            $(marquee).css("text-align", "center");
+        } else {
+            $(marquee).css("text-align", "initial");
         }
 
         var height = $(marquee).height();
