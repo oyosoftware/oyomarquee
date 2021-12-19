@@ -61,9 +61,6 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
     $(marquee).css("overflow", "hidden");
     $(marquee).css("background-color", defaultBackgroundColor);
     $(marquee).css("color", defaultTextColor);
-    if (align === true) {
-        $(marquee).css("text-align", "center");
-    }
 
     var marqueeBanner = document.createElement("div");
     $(marqueeBanner).attr("class", "oyomarqueebanner");
