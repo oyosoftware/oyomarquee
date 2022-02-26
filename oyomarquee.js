@@ -17,7 +17,7 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
     var loop = "infinite";
     var delay = 0;
     var wrap = false;
-    var align = true;
+    var center = true;
     var repeat = 1;
     var defaultBackgroundColor = "#527FC3";
     var defaultTextColor = "white";
@@ -127,6 +127,12 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
             $(marqueeBanner).css("animation-play-state", "paused");
             $(marqueeBanner).css("position", "static");
         }
+        var running = $(marqueeBanner).css("animation-play-state") === "running";
+        if (center === true && (!running || direction === "up" || direction === "down")) {
+            $(marquee).css("text-align", "center");
+        } else {
+            $(marquee).css("text-align", "initial");
+        }
     }
 
     function delayAnimation() {
@@ -145,6 +151,7 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
         set: function (value) {
             direction = value;
             marquee.setText();
+            initScroll();
         }
     });
 
@@ -202,26 +209,21 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
         }
     });
 
-    Object.defineProperty(marquee, "align", {
+    Object.defineProperty(marquee, "center", {
         get: function () {
-            return align;
+            return center;
         },
         set: function (value) {
-            align = value;
-            marquee.setText();
+            center = value;
+            initScroll();
         }
     });
 
-    marquee.setText = function (text, textRepeat) {
+    marquee.setText = function (text, textRepeat = 1) {
         $(marqueeBanner).css("animation-name", "");
         $(marqueeBanner).css("line-height", "normal");
         $(marquee).css("padding-top", "0px");
         $(marquee).css("padding-bottom", "0px");
-
-        var html = $(marqueeBanner).html();
-        $(marqueeBanner).html("oyomarquee");
-        var fontHeight = $(marqueeBanner).height();
-        $(marqueeBanner).html(html);
 
         if (textRepeat !== undefined) {
             repeat = textRepeat;
@@ -240,14 +242,10 @@ function oyoMarquee(marqueeWidth, marqueeHeight, marqueeBorderRadius, textDirect
             $(marqueeBanner).css("white-space", "normal");
         }
 
-        if (align === true) {
-            $(marquee).css("text-align", "center");
-        } else {
-            $(marquee).css("text-align", "initial");
-        }
-
-        var height = $(marquee).height();
-        var factor = Math.floor(height / fontHeight) || 1;
+        var borders = parseFloat($(marquee).css("border-top-width")) + parseFloat($(marquee).css("border-bottom-width"));
+        var height = marqueeHeight - borders;
+        var marqueeFontSize = parseFloat($(marquee).css("font-size"));
+        var factor = Math.floor(height / marqueeFontSize) || 1;
         var lineHeight = parseFloat((height / factor).toFixed(3));
         $(marqueeBanner).css("line-height", lineHeight + "px");
 
